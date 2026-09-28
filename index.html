@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심화 독서 기록 앱</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto space-y-8">
+        
+        <!-- Header -->
+        <header class="bg-white rounded-2xl shadow-sm p-6 text-center border border-gray-100">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">
+                <i class="fas fa-book-open text-blue-500 mr-2"></i>심화 독서 기록
+            </h1>
+            <p class="text-gray-500">수업에서 배운 개념을 독서를 통해 더 깊이 있게 탐구해보세요.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Form Section -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100 h-fit">
+                <h2 class="text-xl font-semibold text-gray-800 mb-6 border-b pb-2">나의 심화독서기록</h2>
+                
+                <form id="readingForm" class="space-y-4">
+                    <!-- Student Info -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label for="studentClass" class="block text-sm font-medium text-gray-700 mb-1">반</label>
+                            <input type="number" id="studentClass" placeholder="예: 3" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label for="studentNumber" class="block text-sm font-medium text-gray-700 mb-1">번호</label>
+                            <input type="number" id="studentNumber" placeholder="예: 15" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label for="studentName" class="block text-sm font-medium text-gray-700 mb-1">이름</label>
+                            <input type="text" id="studentName" placeholder="홍길동" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Date -->
+                    <div>
+                        <label for="date" class="block text-sm font-medium text-gray-700 mb-1">시기</label>
+                        <input type="date" id="date" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                    </div>
+
+                    <!-- Unit & Concept -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="unit" class="block text-sm font-medium text-gray-700 mb-1">수업 단원</label>
+                            <input type="text" id="unit" placeholder="예: 3단원. 생명 시스템" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label for="concept" class="block text-sm font-medium text-gray-700 mb-1">핵심 개념</label>
+                            <input type="text" id="concept" placeholder="예: 효소의 작용" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Book Info -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="bookTitle" class="block text-sm font-medium text-gray-700 mb-1">도서명</label>
+                            <input type="text" id="bookTitle" placeholder="책 제목을 입력하세요" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label for="author" class="block text-sm font-medium text-gray-700 mb-1">작가</label>
+                            <input type="text" id="author" placeholder="지은이를 입력하세요" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Questions -->
+                    <div>
+                        <label for="questions" class="block text-sm font-medium text-gray-700 mb-1">개념에 대해 질문한 내용</label>
+                        <textarea id="questions" rows="3" placeholder="독서 전/중 생긴 질문을 적어주세요." required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none"></textarea>
+                    </div>
+
+                    <!-- Learnings -->
+                    <div>
+                        <label for="learnings" class="block text-sm font-medium text-gray-700 mb-1">깊이 있게 알게 된 점</label>
+                        <textarea id="learnings" rows="4" placeholder="독서를 통해 새롭게 깨닫거나 깊이 이해하게 된 내용을 적어주세요." required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fas fa-save"></i> 기록 저장하기
+                    </button>
+                </form>
+            </div>
+
+            <!-- Log List Section -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100 flex flex-col h-[800px]">
+                <div class="flex justify-between items-center mb-6 border-b pb-2">
+                    <h2 class="text-xl font-semibold text-gray-800">나의 기록 목록</h2>
+                    <span id="recordCount" class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">0건</span>
+                </div>
+                
+                <!-- Records Container -->
+                <div id="recordsContainer" class="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
+                    <!-- Records will be injected here by JavaScript -->
+                    <div id="emptyState" class="h-full flex flex-col items-center justify-center text-gray-400 space-y-3">
+                        <i class="fas fa-inbox text-4xl"></i>
+                        <p>아직 작성된 기록이 없습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 z-50">
+        <i class="fas fa-check-circle text-green-400"></i>
+        <span id="toastMessage">성공적으로 처리되었습니다.</span>
+    </div>
+
+    <script>
+        // 🚨 ▼▼▼ 바로 이곳입니다! 복사하신 구글 시트 웹앱 URL을 아래 따옴표 안에 넣어주세요 ▼▼▼ 🚨
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzufa1CHRlkp05X9oZoHoLF27NCrpnFu3oziWX3CnRbzjND52cyqVq12PdeXvtJ-oV_yw/exec';
+        // 🚨 ▲▲▲ 바로 이곳입니다! 복사하신 구글 시트 웹앱 URL을 위 따옴표 안에 넣어주세요 ▲▲▲ 🚨
+
+        // State variables
+        let records = [];
+
+        // DOM Elements
+        const form = document.getElementById('readingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const recordsContainer = document.getElementById('recordsContainer');
+        const emptyState = document.getElementById('emptyState');
+        const recordCountSpan = document.getElementById('recordCount');
+        
+        // Initialize date to today
+        document.getElementById('date').valueAsDate = new Date();
+
+        // Handle form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Gather data
+            const newRecord = {
+                id: Date.now().toString(),
+                studentClass: document.getElementById('studentClass').value,
+                studentNumber: document.getElementById('studentNumber').value,
+                studentName: document.getElementById('studentName').value,
+                date: document.getElementById('date').value,
+                unit: document.getElementById('unit').value,
+                concept: document.getElementById('concept').value,
+                bookTitle: document.getElementById('bookTitle').value,
+                author: document.getElementById('author').value,
+                questions: document.getElementById('questions').value,
+                learnings: document.getElementById('learnings').value
+            };
+
+            // Change button state to loading
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 구글 시트에 저장 중...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            try {
+                // Send data to Google Apps Script (if URL is set)
+                if (GOOGLE_SCRIPT_URL !== '여기에_복사한_웹앱_URL을_붙여넣으세요') {
+                    // CORS preflight 이슈를 방지하기 위해 text/plain 사용
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8',
+                        },
+                        body: JSON.stringify(newRecord)
+                    });
+                } else {
+                    console.warn("구글 웹앱 URL이 설정되지 않아 로컬 화면에만 저장됩니다.");
+                }
+
+                // Add to state (Local UI update)
+                records.unshift(newRecord); // Add to beginning of array
+                
+                // Update UI
+                renderRecords();
+                updateCount();
+                
+                // Reset form (keep date)
+                const currentDate = document.getElementById('date').value;
+                form.reset();
+                document.getElementById('date').value = currentDate;
+                
+                showToast('기록이 구글 시트에 안전하게 저장되었습니다.');
+
+            } catch (error) {
+                console.error('Error saving to Google Sheets:', error);
+                showToast('저장 중 오류가 발생했습니다. 인터넷 연결을 확인해주세요.');
+            } finally {
+                // Restore button state
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        });
+
+        // Render the list of records
+        function renderRecords() {
+            if (records.length === 0) {
+                emptyState.style.display = 'flex';
+                // Remove all other children
+                Array.from(recordsContainer.children).forEach(child => {
+                    if (child.id !== 'emptyState') child.remove();
+                });
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            
+            // Clear current list (except empty state)
+            Array.from(recordsContainer.children).forEach(child => {
+                if (child.id !== 'emptyState') child.remove();
+            });
+
+            // Create and append record cards
+            records.forEach(record => {
+                const card = document.createElement('div');
+                card.className = 'bg-gray-50 rounded-xl p-4 border border-gray-200 hover:border-blue-300 transition-colors relative group';
+                
+                // Format date nicely
+                const dateObj = new Date(record.date);
+                const formattedDate = `${dateObj.getFullYear()}.${String(dateObj.getMonth() + 1).padStart(2, '0')}.${String(dateObj.getDate()).padStart(2, '0')}`;
+
+                card.innerHTML = `
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button onclick="deleteRecord('${record.id}')" class="text-red-400 hover:text-red-600 p-1" title="삭제">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="bg-gray-700 text-white text-xs font-semibold px-2 py-1 rounded">
+                                ${record.studentClass}반 ${record.studentNumber}번 ${record.studentName}
+                            </span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
+                                ${record.unit}
+                            </span>
+                        </div>
+                        <span class="text-sm text-gray-500 whitespace-nowrap">
+                            <i class="far fa-calendar-alt mr-1"></i>${formattedDate}
+                        </span>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold text-gray-800 mb-1">${record.bookTitle} <span class="text-sm font-normal text-gray-500 ml-1">지은이: ${record.author}</span></h3>
+                    
+                    <div class="bg-white rounded border border-gray-100 p-3 mb-3">
+                        <p class="text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">핵심 개념</p>
+                        <p class="text-gray-800 font-medium">${record.concept}</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-xs font-semibold text-gray-500 mb-1"><i class="fas fa-question-circle text-orange-400 mr-1"></i>질문한 내용</p>
+                            <p class="text-sm text-gray-700 bg-orange-50 p-2 rounded whitespace-pre-wrap">${record.questions}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-gray-500 mb-1"><i class="fas fa-lightbulb text-yellow-500 mr-1"></i>깊이 있게 알게 된 점</p>
+                            <p class="text-sm text-gray-700 bg-yellow-50 p-2 rounded whitespace-pre-wrap">${record.learnings}</p>
+                        </div>
+                    </div>
+                `;
+                
+                recordsContainer.appendChild(card);
+            });
+        }
+
+        // Delete a record
+        window.deleteRecord = function(id) {
+            // In a real app, use a custom modal instead of confirm, but keeping it simple for this structural demo without external libraries
+            records = records.filter(record => record.id !== id);
+            renderRecords();
+            updateCount();
+            showToast('기록이 삭제되었습니다.');
+        };
+
+        // Update record count badge
+        function updateCount() {
+            recordCountSpan.textContent = `${records.length}건`;
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            
+            // Show
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Custom scrollbar style injection for the container
+        const style = document.createElement('style');
+        style.textContent = `
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f1f1f1; 
+                border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #c1c1c1; 
+                border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: #a8a8a8; 
+            }
+        `;
+        document.head.appendChild(style);
+
+    </script>
+</body>
+</html>
